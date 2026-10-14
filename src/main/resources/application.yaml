@@ -1,3 +1,29 @@
 spring:
-  application:
-    name: ms-users
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: password
+  rabbitmq:
+    host: localhost
+    username: guest
+    password: guest
+    listener:
+      simple:
+        default-requeue-rejected: false
+        retry:
+          enabled: true
+          initial-interval: 3s
+#          max-attempts: 3
+        missing-queues-fatal: false
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  data:
+    redis:
+      host: localhost
+      port: 6379
